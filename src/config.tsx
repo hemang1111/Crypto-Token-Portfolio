@@ -150,6 +150,25 @@ export const toFixedFloat = (value: string | number, cut: number = 8) => {
     }
 }
 
+export const formatTime12Hour = (dateInput : any ) => {
+  const date = new Date(dateInput);
+
+  if (isNaN(date.getTime())) return ""; // handle invalid date
+
+  const options = {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  };
+
+  // Format and add spaces around colons
+  return date
+    .toLocaleTimeString("en-US", options)
+    .replace(/:/g, ":");
+}
+
+
 // const url = 'https://api.coingecko.com/api/v3/coins/markets';
 // const options = {method: 'GET', headers: {}, body: undefined};
 

@@ -1,8 +1,8 @@
-import { useState , useEffect } from 'react'
+import { useState , useEffect, useMemo } from 'react'
 import './App.css'
 import CreateTokenModal from './Components/CreateTokenModal'
 import Watchlistgrid from './Components/Watchlistgrid'
-import { listData, setLocalData, toFixedFloat } from './config'
+import { formatTime12Hour, getLocalData, listData, numberLocale, safeParseFloat, setLocalData, toFixedFloat } from './config'
 import PortfolioDonutChart from './Components/PortfolioDonutChart'
 import { Button } from 'rsuite'
 import { useSelector , useDispatch } from 'react-redux'
@@ -17,6 +17,7 @@ function App() {
 
   const [tokenList , setTokenList ] = useState([])
   const [trendingToken , setTrendingToken] = useState({})
+  const [ lastUpdated , SetLastUpdated] =  useState(getLocalData("lastUpdated"))
 
   const handleAddToken = async () =>{
     setOpen(true) // open modal 
@@ -43,11 +44,12 @@ function App() {
     const idsParam = selectedTokens.map((token: any) => token.id).filter(Boolean).join(",")
 
     const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${'usd'}&ids=${idsParam}`;
-    const res: { [key: string]: any } = await listData(url , false)
+    const res: any  = await listData(url , false)
     // console.log(res)
     if(res.data){
+      SetLastUpdated(new Date())
       let tempArray = JSON.parse(JSON.stringify(selectedTokens || []))
-      let newArray = []
+      let newArray : any = []
       tempArray.map((token : any )=>{
         const updatedToken = res.data.find(o => o['id'] == token.id)
         let obj = {...updatedToken}
@@ -58,10 +60,16 @@ function App() {
         newArray.push(obj)
       })
       setLocalData('watchList', newArray )
+      setLocalData('lastUpdated', new Date() )
       dispatch(setToken(newArray))
     }
 
   }
+
+  const totalportfolio = useMemo(()=>{
+
+    return selectedTokens?.reduce((acc: number, item: any) => acc + item.value, 0);
+  },[selectedTokens])
 
   try {
     return (
@@ -75,8 +83,18 @@ function App() {
               Connect Wallet
             </div>
           </div>
-
-          <PortfolioDonutChart/>
+          <div className='flex justify-startw-[100%]'>
+            <div className='flex flex-col w-[100%] justify-between'>
+              <div>
+                <div>Portfolio Total</div>
+                <div className='text-4xl font-medium leading-[110%] text-[var(--white-text)]'>{`$ ${toFixedFloat(totalportfolio).toLocaleString(numberLocale)}`}</div>
+              </div>
+              <div>
+                {`Last updated : ${formatTime12Hour( lastUpdated )}`}
+              </div>
+            </div>
+              <PortfolioDonutChart/>
+          </div>
           <div className='flex justify-between'>
             <h5 className='w-1/6'>
               Watchlist

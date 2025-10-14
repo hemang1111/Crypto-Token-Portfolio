@@ -60,7 +60,7 @@ function EditHoldings(props: any) {
                                 }}
                             >
                             </input>
-                            <button className=' ml-2 w-30' onClick={() => { handleHoldingSave() }}>
+                            <button className=' ml-2 w-[30%]' onClick={() => { handleHoldingSave() }}>
                                 Save
                             </button>
                         </div>

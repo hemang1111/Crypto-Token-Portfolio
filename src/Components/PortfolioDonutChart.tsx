@@ -43,12 +43,12 @@ const PortfolioDonutChart = () => {
                             ))}
                         </Pie>
                         <Legend
-                            height={36}
+                            height='100%'
                             layout="vertical"       // vertical legend
                             verticalAlign="middle"  // align center vertically
                             align="right"
                             wrapperStyle={{
-                                maxHeight: 'auto',
+                                maxHeight: '100%',
                                 overflowY: 'auto',
                                 fontSize: '12px',
                                 paddingLeft: '10px',

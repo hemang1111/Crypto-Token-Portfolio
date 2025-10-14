@@ -59,6 +59,7 @@ html, body, #root {
   --gray-b: rgba(108, 108, 109, 0.43);
   --green-accent: rgba(169, 232, 81, 1);
   --dark: rgba(33, 33, 36, 1);
+  --white-text : rgba(244, 244, 245, 1)
   /* rgba(39, 39, 42, 1) */
   /* rgba(255, 255, 255, 0.04) */
 }
@@ -211,7 +212,7 @@ input:checked~.checkmark:after, .radio input:checked~.checkmark:after {
   padding: 4px 6px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: ;
+  /* background-color: ; */
 }
 
 .change-holding-input:focus {
