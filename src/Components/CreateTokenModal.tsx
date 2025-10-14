@@ -118,6 +118,8 @@ const CreateTokenModal: React.FC<CreateTokenModalProps> = (props) => {
     })
     console.log(tempArray)
 
+    props.SetLastUpdated(new Date())
+    setLocalData('lastUpdated', new Date() )
     setLocalData('watchList', tempArray )
     dispatch(setToken(tempArray))
     props.handleClose()

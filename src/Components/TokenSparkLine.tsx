@@ -10,13 +10,15 @@ function TokenSparkLine(props : any) {
             async function fetchData() {
 
                 try {
+                    let  formatted = []
+                    setChartData([]);
                     const res: any = await listData(
                         `https://api.coingecko.com/api/v3/coins/${props.id}/market_chart?vs_currency=usd&days=7`
                     );
 
                    const intervalMs = 1 * 60 * 60 * 1000; // 4 hours in milliseconds
 
-                    const formatted = res.data.prices
+                    formatted = res.data.prices
                     .filter((item: [number, number], index: number, array: [number, number][]) => {
                         if (index === 0) return true; // always keep the first point
                         const prevTime = array[index - 1][0];
@@ -42,7 +44,7 @@ function TokenSparkLine(props : any) {
 
             fetchData()
         }
-        , [])
+        , [props.id])
 
     return (
         <div className="flex justify-center items-center">
