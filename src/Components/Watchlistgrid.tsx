@@ -10,7 +10,7 @@ import MoreHorizontal from './ICONS/MoreHorizontal'
 import DeleteIcon from './ICONS/DeleteIcon'
 import InfoBox from './Infobox'
 
-function Watchlistgrid() {
+function Watchlistgrid(props) {
 
   const { selectedTokens } = useSelector((state: any) => state.token);
 
@@ -44,6 +44,7 @@ function Watchlistgrid() {
 
     tempArray = tempArray.filter((_, index) => index !== indexToRemove);
     setLocalData('lastUpdated', new Date())
+    props.SetLastUpdated( new Date())
     setLocalData('watchList', tempArray)
     dispatch(setToken(tempArray))
 
@@ -108,7 +109,7 @@ function Watchlistgrid() {
                           {
                             // show input and save button if token in editing mode
                             editingHoldings.indexOf(token.id) !== -1 ?
-                              < EditHoldings setEditingHoldings={setEditingHoldings} editingHoldings={editingHoldings} token={token} />
+                              < EditHoldings SetLastUpdated={props.SetLastUpdated} setEditingHoldings={setEditingHoldings} editingHoldings={editingHoldings} token={token} />
                               :
                               <span>
                                 {toFixedFloat(token.holding)}

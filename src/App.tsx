@@ -197,7 +197,7 @@ function App() {
                   </button>
                 </div>
               </div>
-              <Watchlistgrid/>
+              <Watchlistgrid SetLastUpdated={SetLastUpdated}/>
             </div>
           </div>
         

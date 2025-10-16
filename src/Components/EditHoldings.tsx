@@ -27,6 +27,7 @@ function EditHoldings(props: any) {
         tempArray[index].holding = toFixedFloat(inputValue || 0)
         tempArray[index].value = (toFixedFloat(props.token.current_price) * toFixedFloat(inputValue || 0) ) || ( toFixedFloat(props.token?.data?.price) * toFixedFloat(inputValue || 0) )
         setLocalData('lastUpdated', new Date())
+        props.SetLastUpdated(new Date())
         setLocalData('watchList', tempArray)
         dispatch(setToken(tempArray))
         //remove token from editing mode
