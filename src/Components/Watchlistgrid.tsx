@@ -8,7 +8,7 @@ import EditHoldings from './EditHoldings';
 import ImageLoad from './ImageLoad'
 import MoreHorizontal from './ICONS/MoreHorizontal'
 import DeleteIcon from './ICONS/DeleteIcon'
-import InfoBox from './InfoBox'
+import InfoBox from './Infobox'
 
 function Watchlistgrid() {
 
