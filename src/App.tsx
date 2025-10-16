@@ -172,10 +172,15 @@ function App() {
                     {`Last updated : ${formatTime12Hour(lastUpdated)}`}
                   </div>
                 </div>
-                <div className='w-[100%] mt-4 sm:mt-0'>
-                  <div className='text-base text-[var(--gray-100)]'>Portfolio Total</div>                  
-                  <PortfolioDonutChart />
-                </div>
+                {
+                  selectedTokens.length ?
+                    <div className='w-[100%] mt-4 sm:mt-0'>
+                      <div className='text-base text-[var(--gray-100)]'>Portfolio Total</div>                  
+                      <PortfolioDonutChart />
+                    </div>
+                  :
+                    <></>
+                }
               </div>
               
             </div>
