@@ -161,7 +161,7 @@ function App() {
           </div>
 
           <div className='p-0 md:p-5 flex flex-col w-[100%] justify-between'>
-            {/* <div className='w-[100%] '>
+            <div className='w-[100%] '>
               <div className='flex flex-col md:flex-row justify-between w-full bg-[var(--dark-base)] p-[24px] md:rounded-xl'>
                 <div className='flex flex-col w-auto md:w-[100%] justify-between'>
                   <div >
@@ -173,7 +173,7 @@ function App() {
                   </div>
                 </div>
                 {
-                  selectedTokens.length ?
+                  selectedTokens?.length ?
                     <div className='w-[100%] mt-4 sm:mt-0'>
                       <div className='text-base text-[var(--gray-100)]'>Portfolio Total</div>                  
                       <PortfolioDonutChart />
@@ -183,7 +183,7 @@ function App() {
                 }
               </div>
               
-            </div> */}
+            </div>
 
             <div className="p-3">
               <div className='flex justify-between mt-5'>
