@@ -146,7 +146,7 @@ const CreateTokenModal: React.FC<CreateTokenModalProps> = (props) => {
   const handleScroll = async (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
     // When user is near bottom (100px away) and already api is not in a call and api have next data available
-    if ( !props.addTokenShimmer && !props.nextPageShimmer && props.nextPage && allCoins?.length && ( Math.abs(scrollHeight - scrollTop - clientHeight ) < 100 )) {
+    if ( !props.addTokenShimmer && !props.nextPageShimmer && props.nextPage && allCoins?.length && ( Math.abs(scrollHeight - scrollTop - clientHeight ) < 150 )) {
       props.setNextPageShimmer(true)
       let res = await props.getMarketTokens(props.pageNo + 1)
       // on successfull response
@@ -210,7 +210,7 @@ const CreateTokenModal: React.FC<CreateTokenModalProps> = (props) => {
                           </div>
                             :
                             <>
-                              <div className='h-[calc(100vh-100px)] max-h-[500px]  overflow-y-auto'
+                              <div className='h-[calc(100vh-100px)] max-h-[500px]  overflow-y-auto relative'
                                 onScroll={async (e)=>{ await handleScroll(e)}}
                               >
                                 {
