@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { Button, Modal } from 'rsuite';
 import Shimmer from './Shimmer'
 import NoData from './NoData'
 import { useDispatch, useSelector } from 'react-redux';
