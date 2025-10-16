@@ -43,10 +43,10 @@ function Watchlistgrid() {
     let indexToRemove  = tempArray.findIndex((t)=> t.id == id)
 
     tempArray = tempArray.filter((_, index) => index !== indexToRemove);
-    dispatch(setToken(tempArray))
-
     setLocalData('lastUpdated', new Date())
     setLocalData('watchList', tempArray)
+    dispatch(setToken(tempArray))
+
   }
 
   try {
