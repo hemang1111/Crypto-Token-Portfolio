@@ -102,11 +102,11 @@ const CreateTokenModal: React.FC<CreateTokenModalProps> = (props) => {
 
   // filter token from search input if any
   const allCoins = useMemo(() => {
-    return props.tokenList?.filter((trendingcoin: any) => tokenSearch?.trim()?.length ? 
+    return tempSelectedTokens?.filter((trendingcoin: any) => tokenSearch?.trim()?.length ? 
       ( trendingcoin?.name?.toLowerCase()?.includes(tokenSearch?.trim()?.toLowerCase()) || trendingcoin?.item?.name?.toLowerCase()?.includes(tokenSearch?.trim()?.toLowerCase()) ) 
     : true
   )
-  }, [tokenSearch, props.tokenList])
+  }, [tokenSearch, tempSelectedTokens])
 
   const dispatch = useDispatch()
 
