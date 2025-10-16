@@ -80,7 +80,7 @@ const PortfolioDonutChart = () => {
       >
         <div
           className="
-            overflow-y-auto pl-2 scrollbar-hide 
+            overflow-y-auto pl-2 scrollbar-hide
             max-h-[250px] md:max-h-full
           "
         >

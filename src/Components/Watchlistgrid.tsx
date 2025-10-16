@@ -128,7 +128,7 @@ function Watchlistgrid() {
                                     message={
                                       <>
                                         {
-                                          <div className="flex justify-center items-center w-[100px] rounded-[8px]  z-50 absolute top-1/2 left-2 -translate-y-1/2 shadow-lg left-[-110px] px-2 border-2 border-[var(--dark)] bg-[rgba(39,39,42,1)] text-red-500" onClick={()=>{handleDelete(token.id)}}>
+                                          <div className="flex justify-center items-center w-[100px] rounded-[8px]  z-50 absolute top-1/2 left-2 -translate-y-1/2 shadow-lg left-[-110px] px-2 border-2 border-[var(--dark)] bg-[var(--gray-500)] text-red-500" onClick={()=>{handleDelete(token.id)}}>
                                             <span><DeleteIcon/></span>
                                             <span>Remove</span> 
                                           </div>
@@ -168,7 +168,7 @@ function Watchlistgrid() {
                 <div className=' text-[var(--gray-100)] font-medium text-[13px]'>
                   {`${pageNo} of ${Math.ceil(safeParseFloat(selectedTokens?.length / gridPageLimit))} pages`}
                 </div>
-                <button disabled={!canPrev} className={` ml-2  font-medium text-[13px] cursor-pointer ${canPrev ? 'text-[var(--gray-100)]' : 'text-[rgba(82, 82, 91, 1)]'}`}
+                <button disabled={!canPrev} className={` ml-2  font-medium text-[13px] cursor-pointer ${canPrev ? 'text-[var(--gray-100)]' : 'text-[var(--gray-400)]'}`}
                   onClick={() => {
                     if (canPrev) {
                       setPageNo(pageNo - 1)
@@ -177,7 +177,7 @@ function Watchlistgrid() {
                 >
                   Prev
                 </button>
-                <button disabled={!canNext} className={` ml-2 font-medium text-[13px] cursor-pointer ${canNext ? 'text-[var(--gray-100)]' : 'text-[rgba(82, 82, 91, 1)]'}`}
+                <button disabled={!canNext} className={` ml-2 font-medium text-[13px] cursor-pointer ${canNext ? 'text-[var(--gray-100)]' : 'text-[var(--gray-400)]'}`}
                   onClick={() => {
                     if (canNext) {
                       setPageNo(pageNo + 1)

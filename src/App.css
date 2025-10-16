@@ -28,8 +28,12 @@ body{
   --white-8: rgba(255,255,255,0.08);
   --white :rgba(255,255,255,1) ;
   --cream-white :rgba(244,244,245,1) ;
+  --white-text : rgba(244, 244, 245, 1) ;
+  --white :rgba(244, 244, 245, 1);
   --gray-100: rgba(161, 161, 170, 1);
   --gray-200: rgba(108, 108, 109, 0.43);
+  --gray-400 : rgba(82, 82, 91, 1);
+  --gray-500 : rgba(39,39,42,1);
   --green-accent-30: rgba(34, 197, 94, 0.3);
   --green-accent: rgba(169, 232, 81, 1);
   --green-accent: rgba(169, 232, 81, 1);
@@ -38,15 +42,13 @@ body{
   --dark: rgba(33, 33, 36, 1);
   --dark-8: rgba(0, 0, 0, 0.08);
   --dark-base : rgba(39,39,42,1) ;
-  --white-text : rgba(244, 244, 245, 1) ;
-  --white :rgba(244, 244, 245, 1)
 }
 
 body {
   box-sizing: border-box;
 }
 
-button:focus {
+button:focus , svg:focus {
   outline: none;
 }
 
@@ -174,23 +176,18 @@ input:checked~.checkmark:after, .radio input:checked~.checkmark:after {
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--white-30); /* hover color */
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
 /************************************************* scroll bar end ********************************************/
 
-/* rsuite modal css start */
-.rs-modal-content , .rs-modal-body {
-  padding: 0px;
-  border-radius: 20px ;
-  background-color: var(--dark);
-}
-
-.rs-modal-body{
-  border-radius: 20px ;
-  overflow-y: hidden;
-}
-/* rsuite modal css end */
-
-
-
+/************************************************* change holdings input start ********************************************/
 .change-holding-input{
   color: var(--white);
   transition: 0.2s all; 
@@ -215,14 +212,13 @@ input.change-holding-input::-webkit-inner-spin-button {
   background-color: var(--dark-base) ;
   color: red;
 }
+/************************************************* change holdings input end ********************************************/
 
+/************************************************* Potfolio Chart start ********************************************/
 .recharts-wrapper svg {
   margin: 0 !important;
   padding: 0 !important;
   transform: none !important;
 }
+/************************************************* Potfolio Chart end ********************************************/
 
-.recharts-wrapper > svg > g {
-  /* nudge the chart right by 20px (tweak as needed) */
-  /* transform: translateX(-25%); */
-}

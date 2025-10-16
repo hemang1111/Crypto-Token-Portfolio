@@ -36,11 +36,11 @@ export function WalletConnectButton(props : any) {
                 return (
                   <button
                     onClick={openConnectModal}
-                    className="flex items-center rounded-[100px] bg-[var(--green-accent)] text-[var(--dark-base)] text-sm font-medium  px-2 py-1 sm:px-4 py-2 sm:py-1"
+                    className="flex items-center rounded-[100px] bg-[var(--green-accent)] text-[var(--dark-base)] text-sm font-medium  px-2 py-1 sm:px-4 sm:py-1"
                   >
                     <WalletIcon />
                     <span className="ml-1">
-                        Connect Wallet
+                      Connect Wallet
                     </span>
                   </button>
                 );
