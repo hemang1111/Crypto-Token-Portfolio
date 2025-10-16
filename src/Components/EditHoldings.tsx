@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import InfoBox from './Infobox'
 import { useDispatch, useSelector } from 'react-redux';
 import { toFixedFloat, setLocalData } from '../config'
@@ -23,12 +23,16 @@ function EditHoldings(props: any) {
     //     console.log("inputValue", inputValue)
     // }, [inputValue])
 
+    //called when click on save holding button
     const handleHoldingSave = () => {
         let tempArray = JSON.parse(JSON.stringify(selectedTokens || []))
-        tempArray[props.index].holding = toFixedFloat(inputValue || 0)
-        tempArray[props.index].value = (toFixedFloat(props.token.current_price) * toFixedFloat(inputValue || 0) ) || ( toFixedFloat(props.token?.data?.price) * toFixedFloat(inputValue || 0) )
+        let index  = tempArray.findIndex((t)=> t.id == props.token.id)
+        // at given index update holding and calculate value of token accordignly
+        tempArray[index].holding = toFixedFloat(inputValue || 0)
+        tempArray[index].value = (toFixedFloat(props.token.current_price) * toFixedFloat(inputValue || 0) ) || ( toFixedFloat(props.token?.data?.price) * toFixedFloat(inputValue || 0) )
         dispatch(setToken(tempArray))
         setLocalData('watchList', tempArray)
+        //remove token from editing mode
         props.setEditingHoldings([...props.editingHoldings.filter((t: string) => t !== props.token.id)])
     }
 
@@ -39,8 +43,9 @@ function EditHoldings(props: any) {
                     show={props.editingHoldings.indexOf(props.token.id) !== -1}
                     onClickOutside={() => { props.setEditingHoldings([...props.editingHoldings.filter((t: string) => t !== props.token.id)]) }}
                     message={
-                        <div className='w-100 flex justify-between'>
-                            <input className='w-60 change-holding-input'
+                        <div className='w-[100%] flex justify-between'>
+                            <input className='w-auto change-holding-input'
+                            placeholder='Select'
                                 ref={inputref}
                                 type='number'
                                 value={inputValue}
@@ -60,7 +65,7 @@ function EditHoldings(props: any) {
                                 }}
                             >
                             </input>
-                            <button className=' ml-2 w-[30%]' onClick={() => { handleHoldingSave() }}>
+                            <button className=' ml-2 w-[30%] px-[12px] py-[8px] rounded-md bg-[var(--green-accent)] text-[var(--dark-base)] ml-2 font-medium text-sm' onClick={() => { handleHoldingSave() }}>
                                 Save
                             </button>
                         </div>

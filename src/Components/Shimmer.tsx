@@ -6,7 +6,7 @@ interface ShimmerProps {
 }
 
 const Shimmer: React.FC<ShimmerProps> = ({
-//   width = 'w-100',   // default width
+//   width = 'w-[100%]',   // default width
   height = 'h-5',   // default height
 }) => {
   return <div className={`shimmer rounded-md ${height}`}></div>;

@@ -1,77 +1,53 @@
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-} */
-
-
-html, body, #root {
-  height: 100%;
+html, #root {
+  height : 100%;
   width: 100%;
   margin: 0;
   padding: 0;
   background-color: var(--dark);
-  color: var(--gray-b);
+  color: var(--gray-200);
+}
+
+body{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--dark);
+  color: var(--gray-200);
 }
 
 :root {
   --white-10: rgba(255, 255, 255, 0.1);
   --white-30: rgba(255, 255, 255, 0.3);
   --white-50: rgba(255, 255, 255, 0.5);
-  --gray-a: rgba(161, 161, 170, 1);
-  --gray-b: rgba(108, 108, 109, 0.43);
+  --white-8: rgba(255,255,255,0.08);
+  --white :rgba(255,255,255,1) ;
+  --cream-white :rgba(244,244,245,1) ;
+  --gray-100: rgba(161, 161, 170, 1);
+  --gray-200: rgba(108, 108, 109, 0.43);
+  --green-accent-30: rgba(34, 197, 94, 0.3);
   --green-accent: rgba(169, 232, 81, 1);
+  --green-accent: rgba(169, 232, 81, 1);
+  --green-accent-dark: rgba(34, 197, 94, 1);
+  --green-accent-06: rgba(169,232,81,0.06);
   --dark: rgba(33, 33, 36, 1);
-  --white-text : rgba(244, 244, 245, 1)
-  /* rgba(39, 39, 42, 1) */
-  /* rgba(255, 255, 255, 0.04) */
+  --dark-8: rgba(0, 0, 0, 0.08);
+  --dark-base : rgba(39,39,42,1) ;
+  --white-text : rgba(244, 244, 245, 1) ;
+  --white :rgba(244, 244, 245, 1)
 }
 
 body {
   box-sizing: border-box;
 }
 
+button {
+  outline: none;
+}
+
 .shimmer {
   position: relative;
   overflow: hidden;
-  background-color: #e0e0e0; /* base color */
+  background-color: var(--dark-base) /* base color */
 }
 
 .shimmer::before {
@@ -84,7 +60,7 @@ body {
   background: linear-gradient(
     to right,
     transparent 0%,
-    rgba(255, 255, 255, 0.5) 50%,
+    var(--white-50) 50%,
     transparent 100%
   );
   animation: shimmer 1.5s infinite;
@@ -99,7 +75,7 @@ body {
   }
 }
 
-/************************************************* tokne selection start ********************************************/
+/************************************************* token selection start ********************************************/
 /* Hide the default checkbox appearance */
 .round-checkbox input {
   -webkit-appearance: none;
@@ -107,21 +83,21 @@ body {
   appearance: none;
   width: 12.5px;      /* size of checkbox */
   height: 12.5px;
-  border: 2px solid rgba(161, 161, 170, 1);
+  border: 2px solid var(--gray-100);
   border-radius: 50%;   /* makes it round */
   position: relative;
   cursor: pointer;
   outline: none;
   margin-right: 8px;
   vertical-align: middle;
-  background-color: white;
+  background-color: var(--dark);
   transition: background-color 0.2s, border-color 0.2s;
 }
 
 /* Show checkmark when checked */
 .round-checkbox input:checked {
-  background-color: rgba(169, 232, 81, 1);
-  border-color: rgba(169, 232, 81, 1);
+  background-color: var(--green-accent);
+  border-color: var(--green-accent);
 }
 
 input:checked~.checkmark:after, .radio input:checked~.checkmark:after {
@@ -136,15 +112,15 @@ input:checked~.checkmark:after, .radio input:checked~.checkmark:after {
   left: 50%; */
   transform: translate(-50%, -50%);
   transform: rotate(45deg);
-  color: rgba(33, 33, 36, 1);
+  color: var(--dark);
   font-size: 10px;
   font-weight: bold;
   width: 3px;
   border-width: 1px;
-  border-bottom: 2px solid rgba(33, 33, 36, 1);
-  border-left: 0 solid rgba(33, 33, 36, 1);
-  border-right: 2px solid rgba(33, 33, 36, 1);
-  border-top: 0 solid rgba(33, 33, 36, 1);
+  border-bottom: 2px solid var(--dark);
+  border-left: 0 solid var(--dark);
+  border-right: 2px solid var(--dark);
+  border-top: 0 solid var(--dark);
   left: 0;
   margin: auto;
   position: absolute;
@@ -152,21 +128,23 @@ input:checked~.checkmark:after, .radio input:checked~.checkmark:after {
   top: 1px;
   bottom: 2px;
 }
-/************************************************* tokne selection end ********************************************/
+/************************************************* token selection end ********************************************/
 
 
-/************************************************* tokne search input start ********************************************/
+/************************************************* token search input start ********************************************/
 .search-token-input{
   width : 100%;
   height: 30px;
   line-height: 1;
+  background-color: var(--dark);
+  color: var(--white);
 }
 
 .search-token-input:focus{
   border: none;
   outline: none;
 }
-/************************************************* tokne search input end ********************************************/
+/************************************************* token search input end ********************************************/
 
 
 /************************************************* scroll bar start ********************************************/
@@ -178,18 +156,17 @@ input:checked~.checkmark:after, .radio input:checked~.checkmark:after {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(108, 108, 109, 0.43); /* track color */
+  background: var(--gray-200); /* track color */
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(108, 108, 109, 0.43); /* thumb color */
+  background-color: var(--gray-200); /* thumb color */
   border-radius: 4px;
-  /* border: 2px solid #f0f0f0; space around thumb */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(255, 255, 255, 0.3); /* hover color */
+  background-color: var(--white-30); /* hover color */
 }
 /************************************************* scroll bar end ********************************************/
 
@@ -197,6 +174,7 @@ input:checked~.checkmark:after, .radio input:checked~.checkmark:after {
 .rs-modal-content , .rs-modal-body {
   padding: 0px;
   border-radius: 20px ;
+  background-color: var(--dark);
 }
 
 .rs-modal-body{
@@ -205,18 +183,40 @@ input:checked~.checkmark:after, .radio input:checked~.checkmark:after {
 }
 /* rsuite modal css end */
 
+
+
 .change-holding-input{
-  color: #000;
+  color: var(--white);
   transition: 0.2s all; 
   outline: none;
   padding: 4px 6px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--green-accent);
   border-radius: 4px;
-  /* background-color: ; */
+  background-color: var(--dark-base);
+  border-radius: 6px;
 }
 
 .change-holding-input:focus {
   border: 2px solid;
-  border-color: #22c55e; 
-  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.3); 
+  border-color: var(--green-accent); 
+  box-shadow: 0 0 0 2px var(--green-accent-30); 
 } 
+
+input.change-holding-input::-webkit-outer-spin-button,
+input.change-holding-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  background-color: var(--dark-base) ;
+  color: red;
+}
+
+.recharts-wrapper svg {
+  margin: 0 !important;
+  padding: 0 !important;
+  transform: none !important;
+}
+
+.recharts-wrapper > svg > g {
+  /* nudge the chart right by 20px (tweak as needed) */
+  /* transform: translateX(-25%); */
+}
