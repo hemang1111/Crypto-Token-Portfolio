@@ -19,10 +19,6 @@ function EditHoldings(props: any) {
         },10)
     }, [])
 
-    // useEffect(() => {
-    //     console.log("inputValue", inputValue)
-    // }, [inputValue])
-
     //called when click on save holding button
     const handleHoldingSave = () => {
         let tempArray = JSON.parse(JSON.stringify(selectedTokens || []))
@@ -31,6 +27,7 @@ function EditHoldings(props: any) {
         tempArray[index].holding = toFixedFloat(inputValue || 0)
         tempArray[index].value = (toFixedFloat(props.token.current_price) * toFixedFloat(inputValue || 0) ) || ( toFixedFloat(props.token?.data?.price) * toFixedFloat(inputValue || 0) )
         dispatch(setToken(tempArray))
+        setLocalData('lastUpdated', new Date())
         setLocalData('watchList', tempArray)
         //remove token from editing mode
         props.setEditingHoldings([...props.editingHoldings.filter((t: string) => t !== props.token.id)])
@@ -59,7 +56,6 @@ function EditHoldings(props: any) {
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter') {
                                         // Enter was pressed
-                                        console.log('Enter pressed!', inputValue);
                                         handleHoldingSave(); // Call save function
                                     }
                                 }}

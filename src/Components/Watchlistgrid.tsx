@@ -1,11 +1,14 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setToken } from '../redux/tokenSlice';
-import { gridPageLimit, getLocalData, safeParseInt, safeParseFloat, toFixedFloat, numberLocale } from '../config'
+import { gridPageLimit, getLocalData, safeParseInt, safeParseFloat, toFixedFloat, numberLocale , setLocalData} from '../config'
 import NoData from './NoData';
 import TokenSparkLine from './TokenSparkLine';
 import EditHoldings from './EditHoldings';
 import ImageLoad from './ImageLoad'
+import MoreHorizontal from './ICONS/MoreHorizontal'
+import DeleteIcon from './ICONS/DeleteIcon'
+import InfoBox from './InfoBox'
 
 function Watchlistgrid() {
 
@@ -14,15 +17,13 @@ function Watchlistgrid() {
   const [pageNo, setPageNo] = useState(1)
   const [editingHoldings, setEditingHoldings] = useState([])
 
-  useEffect(() => {
-    console.log("editingHoldings", editingHoldings)
-  }, [editingHoldings])
+  const [showDeleteToken , setShowDeleteToken] = useState(false)
+  const [currentDeleteIndex , setCurrentDeleteIndex] = useState(-1)
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setToken(getLocalData('watchList')))
-    console.log(selectedTokens)
   }, [])
 
   //get page no wise tokens to show in grid
@@ -34,6 +35,19 @@ function Watchlistgrid() {
   // check can user go to previous or next page in grid
   const canPrev = useMemo(() => { return pageNo !== 1 }, [pageNo])
   const canNext = useMemo(() => { return pageNo < Math.ceil(safeParseFloat(selectedTokens?.length / gridPageLimit)) }, [pageNo, selectedTokens])
+
+  const handleDelete = ( id ) =>{
+    setShowDeleteToken(false)
+    setCurrentDeleteIndex(-1)
+    let tempArray = JSON.parse(JSON.stringify(selectedTokens || []))
+    let indexToRemove  = tempArray.findIndex((t)=> t.id == id)
+
+    tempArray = tempArray.filter((_, index) => index !== indexToRemove);
+    dispatch(setToken(tempArray))
+
+    setLocalData('lastUpdated', new Date())
+    setLocalData('watchList', tempArray)
+  }
 
   try {
     return (
@@ -48,6 +62,7 @@ function Watchlistgrid() {
                 <th className="px-2 sm:px-4 py-2 w-1/6 text-left">Sparkline (7d)</th>
                 <th className="px-2 sm:px-4 py-2 text-left w-1/6 ">Holdings</th>
                 <th className="px-2 sm:px-4 py-2 w-2/6 text-left">Value</th>
+                <th className="px-2 sm:px-4 py-2 w-2/6 text-left"></th>
               </tr>
             </thead>
             <tbody >
@@ -61,7 +76,6 @@ function Watchlistgrid() {
                   :
 
                   pageWiseToken?.map((token: object, index: number) => {
-                    console.log("token", token)
                     return (
                       <tr className="bg-[var(--dark)] hover:bg-[var(--dark-base)]  transition-colors" key={`token-grid-${index}`}>
                         <td className="px-2 sm:px-4 py-3 flex ">
@@ -105,6 +119,28 @@ function Watchlistgrid() {
                           </span>
                         </td>
                         <td className="px-2 sm:px-4 py-3 text-[var(--white)] text-[13px]">{`$${token?.value?.toLocaleString(numberLocale)}`}</td>
+                        <td className="px-2 sm:px-4 py-3 text-[var(--gray-100)] text-[13px] whitespace-nowrap cursor-pointer relative">
+                          {
+                            showDeleteToken && (currentDeleteIndex == index )?
+                                <InfoBox
+                                    show={showDeleteToken}
+                                    onClickOutside={() => { setShowDeleteToken(false) }}
+                                    message={
+                                      <>
+                                        {
+                                          <div className="flex justify-center items-center w-[100px] rounded-[8px]  z-50 absolute top-1/2 left-2 -translate-y-1/2 shadow-lg left-[-110px] px-2 border-2 border-[var(--dark)] bg-[rgba(39,39,42,1)] text-red-500" onClick={()=>{handleDelete(token.id)}}>
+                                            <span><DeleteIcon/></span>
+                                            <span>Remove</span> 
+                                          </div>
+                                        }
+                                      </>
+                                    }
+                                ></InfoBox>
+                                :
+                                <></>
+                          }
+                          <MoreHorizontal class="absolute top-1/2 right-2 -translate-y-1/2" onClick={()=>{setCurrentDeleteIndex(index) ; setShowDeleteToken(true)}}/>
+                        </td>
                       </tr>
                     )
                   })

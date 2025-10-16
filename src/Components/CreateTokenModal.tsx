@@ -30,9 +30,6 @@ interface TokenProps {
 const TokenSelectionList: React.FC<TokenProps> = (props) => {
 
   const isSelected = props.tempSelectedTokens?.findIndex((o: any) => o['id'] == props.coin.id) !== -1
-  console.log(props)
-  console.log(props.tempSelectedTokens)
-  console.log("isSelected", isSelected)
 
   //add or remove token from watchlist 
   const handleWhatchList = (coin: any) => {
@@ -124,7 +121,6 @@ const CreateTokenModal: React.FC<CreateTokenModalProps> = (props) => {
       token.price_change_percentage_24h = typeof (token.price_change_percentage_24h) == 'number' ? toFixedFloat(token.price_change_percentage_24h, 2) : toFixedFloat(token.data.price_change_percentage_24h.usd, 2)
       token.current_price = token.current_price ? toFixedFloat(token.current_price) : toFixedFloat(token?.data?.price)
     })
-    console.log(tempArray)
 
     //update last updated date 
     props.SetLastUpdated(new Date())
@@ -279,14 +275,3 @@ const CreateTokenModal: React.FC<CreateTokenModalProps> = (props) => {
 }
 
 export default CreateTokenModal
-
-// const url = 'https://api.coingecko.com/api/v3/coins/{id}/market_chart';
-// const options = {method: 'GET', headers: {'x-cg-demo-api-key': ''}, body: undefined};
-
-// try {
-//   const response = await fetch(url, options);
-//   const data = await response.json();
-//   console.log(data);
-// } catch (error) {
-//   console.error(error);
-// }

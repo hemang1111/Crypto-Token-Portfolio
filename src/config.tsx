@@ -43,8 +43,7 @@ export const listData = async (url: string, sendParams = true, per_page = 250 , 
                     ...header
                 }
             },
-        );
-        console.log(response.data);
+        )
         return response
     } catch (error) {
         console.error('Error fetching coins:', error);
@@ -171,16 +170,4 @@ export const formatTime12Hour = (dateInput : any ) => {
     .toLocaleTimeString("en-US", options)
     .replace(/:/g, ":");
 }
-
-
-// const url = 'https://api.coingecko.com/api/v3/coins/markets';
-// const options = {method: 'GET', headers: {}, body: undefined};
-
-// try {
-//   const response = await fetch(url, options);
-//   const data = await response.json();
-//   console.log(data);
-// } catch (error) {
-//   console.error(error);
-// }
 

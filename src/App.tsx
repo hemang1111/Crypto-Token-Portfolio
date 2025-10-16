@@ -58,11 +58,9 @@ function App() {
         setPageNo(pageNo + 1 )
       }
     }
-    console.log("res", res)
     // call trending tokens
     let trendingTokenRes: { [key: string]: any } = await getTrendingToken()
     // setTrendingToken(trendingTokenRes.data)
-    console.log("trendingTokenRes", trendingTokenRes)
     
     // remove dulication of token from market and trending token api 
     let tempArray : any = []
@@ -85,7 +83,6 @@ function App() {
         }
       })
     }
-    console.log(tempArray)
     setTokenList(tempArray)
 
     setAddTokenShimmer(false)
@@ -95,11 +92,6 @@ function App() {
   // const { connect, connectors, error, isLoading, pendingConnector } =
   //   useConnect();
   // const { disconnect } = useDisconnect();
-
-  useEffect(() => {
-    console.log(openAddToken)
-  }, [openAddToken])
-  // console.log("connectors", connectors)
 
   const handleClose = () => setOpen(false);
 
@@ -112,7 +104,6 @@ function App() {
     const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${'usd'}&ids=${idsParam}`;
     const res: any = await listData(url, false)
     SetIsRefreshing(false)
-    // console.log(res)
 
     // on successfull response
     if (res.data) {
