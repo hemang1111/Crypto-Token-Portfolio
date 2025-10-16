@@ -3,7 +3,7 @@ html, #root {
   width: 100%;
   margin: 0;
   padding: 0;
-  background-color: var(--dark);
+  background-color: white;
   color: var(--gray-200);
 }
 
