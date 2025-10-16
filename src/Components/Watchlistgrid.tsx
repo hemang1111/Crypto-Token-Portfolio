@@ -132,7 +132,7 @@ function Watchlistgrid() {
                 <div className=' text-[var(--gray-100)] font-medium text-[13px]'>
                   {`${pageNo} of ${Math.ceil(safeParseFloat(selectedTokens?.length / gridPageLimit))} pages`}
                 </div>
-                <button disabled={!canPrev} className={` ml-2  font-medium text-[13px] cursor-pointer ${canPrev ? 'text-[var(--gray-100)]' : 'text-[var(--dark-8)]'}`}
+                <button disabled={!canPrev} className={` ml-2  font-medium text-[13px] cursor-pointer ${canPrev ? 'text-[var(--gray-100)]' : 'text-[rgba(82, 82, 91, 1)]'}`}
                   onClick={() => {
                     if (canPrev) {
                       setPageNo(pageNo - 1)
@@ -141,7 +141,7 @@ function Watchlistgrid() {
                 >
                   Prev
                 </button>
-                <button disabled={!canNext} className={` ml-2 font-medium text-[13px] cursor-pointer ${canNext ? 'text-[var(--gray-100)]' : 'text-[var(--dark-8)]'}`}
+                <button disabled={!canNext} className={` ml-2 font-medium text-[13px] cursor-pointer ${canNext ? 'text-[var(--gray-100)]' : 'text-[rgba(82, 82, 91, 1)]'}`}
                   onClick={() => {
                     if (canNext) {
                       setPageNo(pageNo + 1)

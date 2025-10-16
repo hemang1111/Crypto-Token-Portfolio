@@ -37,7 +37,7 @@ function App() {
   } 
 
   const getMarketTokens = async ( currentPageNO = pageNo ) =>{
-    return await listData('https://api.coingecko.com/api/v3/coins/markets' , true , currentPageNO  , ApiPageLimit)
+    return await listData('https://api.coingecko.com/api/v3/coins/markets' , true ,ApiPageLimit   , currentPageNO )
   }
 
   //called when click on create token button
