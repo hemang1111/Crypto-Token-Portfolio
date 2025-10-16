@@ -151,7 +151,7 @@ const CreateTokenModal: React.FC<CreateTokenModalProps> = (props) => {
       let res = await props.getMarketTokens(props.pageNo + 1)
       // on successfull response
       if(res.data){
-        e.target.scrollTop -= 50
+        e.target.scrollTop -= 150
         // check when is last page 
         if( res?.data?.length !== ApiPageLimit){
           props.setNextPage(false)
