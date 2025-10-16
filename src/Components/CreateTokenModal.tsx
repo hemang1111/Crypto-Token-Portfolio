@@ -101,12 +101,12 @@ const CreateTokenModal: React.FC<CreateTokenModalProps> = (props) => {
   // }, [tokenSearch, props.trendingToken?.coins])
 
   // filter token from search input if any
-  const allCoins = useMemo(() => {
-    return tempSelectedTokens?.filter((trendingcoin: any) => tokenSearch?.trim()?.length ? 
+  let allCoins = useMemo(() => {
+    return props.tokenList?.filter((trendingcoin: any) => tokenSearch?.trim()?.length ? 
       ( trendingcoin?.name?.toLowerCase()?.includes(tokenSearch?.trim()?.toLowerCase()) || trendingcoin?.item?.name?.toLowerCase()?.includes(tokenSearch?.trim()?.toLowerCase()) ) 
     : true
   )
-  }, [tokenSearch, tempSelectedTokens])
+  }, [tokenSearch, props.tokenList])
 
   const dispatch = useDispatch()
 
@@ -151,7 +151,11 @@ const CreateTokenModal: React.FC<CreateTokenModalProps> = (props) => {
       let res = await props.getMarketTokens(props.pageNo + 1)
       // on successfull response
       if(res.data){
+      allCoins = [...tempSelectedTokens , ...res.data ]?.filter((trendingcoin: any) => tokenSearch?.trim()?.length) ? 
+          ( trendingcoin?.name?.toLowerCase()?.includes(tokenSearch?.trim()?.toLowerCase()) || trendingcoin?.item?.name?.toLowerCase()?.includes(tokenSearch?.trim()?.toLowerCase()) ) 
+          : true
         setTempSelectedTokens([...tempSelectedTokens , ...res.data ])
+  
         e.target.scrollTop -= 150
         // check when is last page 
         if( res?.data?.length !== ApiPageLimit){
