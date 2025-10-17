@@ -120,19 +120,13 @@ export const safeParseInt = (value: number | string) => {
 }
 
 
-//ex --> 123.4563 --> 123.45 , cut = 3 than 123.456
-/**
- * 
- * @param {Number} value //any number value 
- * @param {Number} cut //number of point value you need after dot
- * @returns 
- */
 /**
 * Rounds a number to a specified number of decimal places without returning NaN or undefined.
 * @param {Number} value // any numeric value
 * @param {Number} cut   // number of decimal places needed after the dot
 * @returns {Number}     // parsed float with specified decimal places
 */
+//ex --> 123.4563 --> 123.45 , cut = 3 than 123.456
 export const toFixedFloat = (value: string | number, cut: number = 8) => {
     try {
         // Safely parse the input value to a number using safeParseFloat to handle undefined, null, and empty strings
@@ -153,6 +147,11 @@ export const toFixedFloat = (value: string | number, cut: number = 8) => {
     }
 }
 
+/**
+* @param {string} dateInput // any date value
+* @returns {Number}     // time in HH : MM : SS formate
+*/
+//example ----> Fri Oct 17 2025 08:38:12 GMT+0530 (India Standard Time) ---> 08:38:12 AM
 export const formatTime12Hour = (dateInput : any ) => {
   const date = new Date(dateInput);
 

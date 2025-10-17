@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo } from 'react'
 import './App.css'
 import CreateTokenModal from './Components/CreateTokenModal'
 import Watchlistgrid from './Components/Watchlistgrid'
-import { formatTime12Hour, getLocalData, listData, numberLocale, setLocalData, toFixedFloat , ApiPageLimit } from './config'
 import { useSelector, useDispatch } from 'react-redux'
 import { setToken } from './redux/tokenSlice'
 import { WalletProvider } from "./Components/WalletProvider";
@@ -12,7 +11,7 @@ import PlusIcon from './Components/ICONS/PlusIcon'
 import RefreshIcon from './Components/ICONS/RefreshIcon'
 import Rectangle_2 from './Components/ICONS/Rectangle_2'
 import StarIcon from './Components/ICONS/StarIcon'
-// import { useAccount, useConnect, useDisconnect } from "wagmi";
+import { formatTime12Hour, getLocalData, listData, numberLocale, setLocalData, toFixedFloat , ApiPageLimit } from './config'
 
 function App() {
 

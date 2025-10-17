@@ -31,34 +31,28 @@ const tokenSlice = createSlice({
       state.selectedTokens = action.payload ;
     },
 
-    // ✅ Add a token to selected list
+    //  Add a token to selected list
     addToken: (state, action: PayloadAction<Token>) => {
       const exists = state.selectedTokens.some(t => t.id === action.payload.id);
       if (!exists) {
         state.selectedTokens.push(action.payload);
-        // setLocalData('watchList',state.selectedTokens)
       }
     },
 
-    // ✅ Remove token by id
+    //  Remove token by id
     removeToken: (state, action: PayloadAction<string>) => {
       state.selectedTokens = state.selectedTokens.filter(t => t.id !== action.payload);
-      // setLocalData('watchList',state.selectedTokens)
-      //   state.holdings = state.holdings.filter(h => h.id !== action.payload);
     },
 
-    // ✅ Add or update a holding
+    //  Add or update a holding
     updateHolding: (state, action: PayloadAction<Token>) => {
       const existing = state.selectedTokens.find(h => h.id === action.payload.id);
       if (existing) {
         existing.holding = action.payload.holding;
       } 
-    // else {
-    //     state.selectedTokens.holdings.push(action.payload);
-    //   }
     },
 
-    // ✅ Clear all tokens
+    //  Clear all tokens
     clearAll: (state) => {
       state.selectedTokens = []
     },
