@@ -48,6 +48,8 @@ body {
   box-sizing: border-box;
 }
 
+
+
 button:focus , button:hover , svg:focus {
   outline: none;
 }
@@ -141,6 +143,7 @@ input:checked~.checkmark:after, .radio input:checked~.checkmark:after {
 
 /************************************************* token search input start ********************************************/
 .search-token-input{
+  font-size : 1rem ;
   width : 100%;
   height: 30px;
   line-height: 1;

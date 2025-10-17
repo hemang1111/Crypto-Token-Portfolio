@@ -218,7 +218,7 @@ const CreateTokenModal: React.FC<CreateTokenModalProps> = (props) => {
                   </>
                   :
                   <>
-                      <div className='border-b border-[var(--white-8)] p-2'>
+                      <div className='flex items-center border-b border-[var(--white-8)] p-2 mx-2'>
                         <input className="search-token-input" placeholder='Search tokens (e.g., ETH, SOL)..'
                           onChange={(e) => { handleTokenSearch(e) }}
                           value={tokenSearch}
