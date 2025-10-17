@@ -21,6 +21,8 @@ body{
   flex-direction: column;
 }
 
+
+
 :root {
   --white-10: rgba(255, 255, 255, 0.1);
   --white-30: rgba(255, 255, 255, 0.3);
@@ -200,6 +202,7 @@ input:checked~.checkmark:after, .radio input:checked~.checkmark:after {
   border-radius: 4px;
   background-color: var(--dark-base);
   border-radius: 6px;
+  line-height : 0.5
 }
 
 .change-holding-input:focus {

@@ -1,9 +1,9 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @layer base {
   body {
-    @apply font-medium text-4xl leading-[110%] tracking-[-0.0224em];
     font-family: 'Inter', sans-serif;
   }
 }

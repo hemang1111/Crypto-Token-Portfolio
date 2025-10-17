@@ -79,7 +79,7 @@ function Watchlistgrid(props) {
                   pageWiseToken?.map((token: object, index: number) => {
                     return (
                       <tr className="bg-[var(--dark)] hover:bg-[var(--dark-base)]  transition-colors" key={`token-grid-${index}`}>
-                        <td className="px-2 sm:px-4 py-3 flex ">
+                        <td className="px-2 sm:px-4 py-3 flex items-center">
                           <div className='w-6 h-6'>
                             <ImageLoad className="rounded-[4px]" url={token.thumb || token.image} />
                           </div>
@@ -129,8 +129,8 @@ function Watchlistgrid(props) {
                                     message={
                                       <>
                                         {
-                                          <div className="flex justify-center items-center w-[100px] rounded-[8px]  z-50 absolute top-1/2 left-2 -translate-y-1/2 shadow-lg left-[-110px] px-2 border-2 border-[var(--dark)] bg-[var(--gray-500)] text-red-500" onClick={()=>{handleDelete(token.id)}}>
-                                            <span><DeleteIcon/></span>
+                                          <div className="flex justify-start items-center w-[100px] rounded-[8px]  z-50 absolute top-1/2 left-2 -translate-y-1/2 shadow-lg left-[-110px] px-2 border-2 border-[var(--dark)] bg-[var(--gray-500)] text-red-500" onClick={()=>{handleDelete(token.id)}}>
+                                            <span><DeleteIcon class="mr-2"/></span>
                                             <span>Remove</span> 
                                           </div>
                                         }

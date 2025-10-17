@@ -42,7 +42,7 @@ function EditHoldings(props: any) {
                     onClickOutside={() => { props.setEditingHoldings([...props.editingHoldings.filter((t: string) => t !== props.token.id)]) }}
                     message={
                         <div className='w-[100%] flex justify-between'>
-                            <input className='w-auto change-holding-input'
+                            <input className='w-50px change-holding-input'
                             placeholder='Select'
                                 ref={inputref}
                                 type='number'
