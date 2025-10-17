@@ -158,7 +158,7 @@ const CreateTokenModal: React.FC<CreateTokenModalProps> = (props) => {
     if ( !props.addTokenShimmer && !props.nextPageShimmer && props.nextPage && allCoins?.length && ( Math.abs(scrollHeight - scrollTop - clientHeight ) < 150 )) {
       props.setNextPageShimmer(true)
       let res = await props.getMarketTokens(props.pageNo + 1)
-      
+
       // on successfull response
       if(res.data){
         setAllCoins(
@@ -250,7 +250,7 @@ const CreateTokenModal: React.FC<CreateTokenModalProps> = (props) => {
                                         })
                                       }
                                       {
-                                        props.addTokenShimmer ?
+                                        props.nextPageShimmer ?
                                           <div className='w-[100%] p-3'>
                                             <div className='w-75 '><Shimmer /></div>
                                             <div className='w-75 mt-3'><Shimmer /></div>
