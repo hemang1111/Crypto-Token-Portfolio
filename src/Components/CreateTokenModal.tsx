@@ -92,6 +92,8 @@ const CreateTokenModal: React.FC<CreateTokenModalProps> = (props) => {
   const [tokenSearch, SetTokenSearch] = useState('')
   const [tempSelectedTokens, setTempSelectedTokens] = useState([])
 
+  const [ allCoins , setAllCoins] = useState([])
+  
   const handleTokenSearch = (e: any) => {
     SetTokenSearch(e.target.value)
   }
@@ -101,12 +103,19 @@ const CreateTokenModal: React.FC<CreateTokenModalProps> = (props) => {
   // }, [tokenSearch, props.trendingToken?.coins])
 
   // filter token from search input if any
-  let allCoins = useMemo(() => {
-    return props.tokenList?.filter((trendingcoin: any) => tokenSearch?.trim()?.length ? 
-      ( trendingcoin?.name?.toLowerCase()?.includes(tokenSearch?.trim()?.toLowerCase()) || trendingcoin?.item?.name?.toLowerCase()?.includes(tokenSearch?.trim()?.toLowerCase()) ) 
-    : true
-  )
-  }, [tokenSearch, props.tokenList])
+  useEffect(()=>{
+    setAllCoins(
+      props.tokenList.filter((t) => {
+      if (tokenSearch?.trim()?.length) {
+        return (
+          t?.name?.toLowerCase()?.includes(tokenSearch.trim().toLowerCase()) ||
+          t?.item?.name?.toLowerCase()?.includes(tokenSearch.trim().toLowerCase())
+        );
+      }
+      return true; // no search, keep all
+    })
+    )
+  },[tokenSearch, props.tokenList])
 
   const dispatch = useDispatch()
 
@@ -149,14 +158,22 @@ const CreateTokenModal: React.FC<CreateTokenModalProps> = (props) => {
     if ( !props.addTokenShimmer && !props.nextPageShimmer && props.nextPage && allCoins?.length && ( Math.abs(scrollHeight - scrollTop - clientHeight ) < 150 )) {
       props.setNextPageShimmer(true)
       let res = await props.getMarketTokens(props.pageNo + 1)
+      
       // on successfull response
       if(res.data){
-      allCoins = [...tempSelectedTokens , ...res.data ]?.filter((trendingcoin: any) => tokenSearch?.trim()?.length) ? 
-          ( trendingcoin?.name?.toLowerCase()?.includes(tokenSearch?.trim()?.toLowerCase()) || trendingcoin?.item?.name?.toLowerCase()?.includes(tokenSearch?.trim()?.toLowerCase()) ) 
-          : true
-        setTempSelectedTokens([...tempSelectedTokens , ...res.data ])
+        setAllCoins(
+          [...allCoins, ...res.data].filter((t) => {
+            if (tokenSearch?.trim()?.length) {
+              return (
+                t?.name?.toLowerCase()?.includes(tokenSearch.trim().toLowerCase()) ||
+                t?.item?.name?.toLowerCase()?.includes(tokenSearch.trim().toLowerCase())
+              );
+            }
+            return true; // no search, keep all
+          })
+        )
+        e.target.scrollTop -= ( 10 * 16 )
   
-        e.target.scrollTop -= 150
         // check when is last page 
         if( res?.data?.length !== ApiPageLimit){
           props.setNextPage(false)
@@ -171,7 +188,6 @@ const CreateTokenModal: React.FC<CreateTokenModalProps> = (props) => {
           props.setNextPageShimmer(false)
         },100)
       }
-      // setPage((prev) => prev + 1);
     }
   };
 
@@ -234,7 +250,7 @@ const CreateTokenModal: React.FC<CreateTokenModalProps> = (props) => {
                                         })
                                       }
                                       {
-                                        props.nextPageShimmer ?
+                                        props.addTokenShimmer ?
                                           <div className='w-[100%] p-3'>
                                             <div className='w-75 '><Shimmer /></div>
                                             <div className='w-75 mt-3'><Shimmer /></div>

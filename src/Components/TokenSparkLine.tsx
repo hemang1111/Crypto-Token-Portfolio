@@ -24,7 +24,7 @@ function TokenSparkLine(props: any) {
                     let formatted = []
                     setIsLoading(true)
                     setChartData([]);
-                    const res: any = await listData(
+                    const res:any = await listData(
                         `https://api.coingecko.com/api/v3/coins/${props.id}/market_chart?vs_currency=usd&days=7`
                     )
                     setIsLoading(false)
@@ -59,8 +59,11 @@ function TokenSparkLine(props: any) {
                 }
             }
 
-            if(isInView)
-                fetchData()
+            if(isInView){
+                setTimeout(()=>{
+                    fetchData()
+                },100)
+            }
         }
     , [isInView,props.id])
 
