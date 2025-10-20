@@ -68,7 +68,7 @@ function App() {
     }
 
     if(Array.isArray(trendingTokenRes?.data?.coins)){
-      trendingTokenRes.data.coins.map((t)=>{
+      trendingTokenRes.data?.coins?.map((t)=>{
         // find is given token from trending api response is also present in market token api
         let index = tempArray.findIndex(o => o['id'] == t.item.id)
 
@@ -112,11 +112,11 @@ function App() {
 
       // update value of each token and update all data with latets response except holdings
       tempArray.map((token: any) => {
-        const updatedToken = res.data.find(o => o['id'] == token.id)
+        const updatedToken = res.data?.find(o => o['id'] == token.id)
         let obj = { ...updatedToken }
         obj.holding = token.holding
         obj.value = (toFixedFloat(updatedToken.current_price) * toFixedFloat(token.holding)) || (toFixedFloat(updatedToken?.data?.price) * toFixedFloat(token.holding))
-        obj.price_change_percentage_24h = typeof (updatedToken.price_change_percentage_24h) == 'number' ? toFixedFloat(updatedToken.price_change_percentage_24h, 2) : toFixedFloat(updatedToken.data.price_change_percentage_24h.usd, 2)
+        obj.price_change_percentage_24h = typeof (updatedToken.price_change_percentage_24h) == 'number' ? toFixedFloat(updatedToken.price_change_percentage_24h, 2) : toFixedFloat(updatedToken?.data?.price_change_percentage_24h?.usd, 2)
         obj.current_price = updatedToken.current_price ? toFixedFloat(updatedToken.current_price) : toFixedFloat(updatedToken?.data?.price)
         newArray.push(obj)
       })

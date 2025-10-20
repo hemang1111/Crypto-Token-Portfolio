@@ -122,11 +122,11 @@ const CreateTokenModal: React.FC<CreateTokenModalProps> = (props) => {
   // called when clicked on save watchlist button
   const saveWatchList = () => {
     let tempArray = JSON.parse(JSON.stringify(tempSelectedTokens || []))
-
+    console.log("tempArray",tempArray)
     // calculate token value shilw saving in watchlist 
     tempArray.map((token) => {
       token.value = (toFixedFloat(token.current_price) * toFixedFloat(token.holding)) || (toFixedFloat(token?.data?.price) * toFixedFloat(token.holding))
-      token.price_change_percentage_24h = typeof (token.price_change_percentage_24h) == 'number' ? toFixedFloat(token.price_change_percentage_24h, 2) : toFixedFloat(token.data.price_change_percentage_24h.usd, 2)
+      token.price_change_percentage_24h = typeof (token.price_change_percentage_24h) == 'number' ? toFixedFloat(token.price_change_percentage_24h, 2) : toFixedFloat(token?.data?.price_change_percentage_24h?.usd, 2)
       token.current_price = token.current_price ? toFixedFloat(token.current_price) : toFixedFloat(token?.data?.price)
     })
 
